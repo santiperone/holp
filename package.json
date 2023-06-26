@@ -9,7 +9,7 @@
     "./proxies": {
       "import": "./dist/proxies.js",
       "require": "./dist/proxies.cjs",
-      "types": "./proxies.d.ts"
+      "types": "./dist/proxies/index.d.ts"
     },
     "./errors": {
       "import": "./dist/errors.js",

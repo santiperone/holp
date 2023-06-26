@@ -5,9 +5,13 @@ import {
   APIGatewayProxyEventQueryStringParameters,
   Context,
 } from 'aws-lambda';
-import { parseEvent } from 'utils/APIGatewayRequest';
-import { Logger, APIGatewayResponse } from 'utils/APIGatewayResponse';
-import { responseFactory, errorFactory } from 'utils/APIGatewayResponse';
+import { parseEvent } from '../utils/APIGatewayRequest';
+import {
+  Logger,
+  APIGatewayResponse,
+  responseFactory,
+  errorFactory,
+} from '../utils/APIGatewayResponse';
 
 export interface APIGatewayParsedEvent
   extends Omit<APIGatewayProxyEvent, 'body'> {

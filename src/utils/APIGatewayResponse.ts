@@ -1,7 +1,7 @@
 // TODO: find a more suitable logging library.
 import { APIGatewayProxyResult } from 'aws-lambda';
 import { HTTPError, InternalServerError } from '../errors';
-import { withAPIGatewayOptions } from 'proxies';
+import { withAPIGatewayOptions } from '../proxies';
 
 type Body = object | undefined | null;
 

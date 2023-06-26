@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyEventHeaders } from 'aws-lambda';
-import { APIGatewayParsedEvent } from 'proxies';
+import { APIGatewayParsedEvent } from '../proxies';
 
 function caseInsensitiveHeaders(target: APIGatewayProxyEventHeaders) {
   const proxy = new Proxy(
