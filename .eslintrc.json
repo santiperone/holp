@@ -1,0 +1,44 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "env": {
+    "node": true,
+    "jest": true,
+    "es6": true
+  },
+  "globals": {
+    "Buffer": true,
+    "escape": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": "latest"
+  },
+  "ignorePatterns": ["**/node_modules/", "**/dist/", ".eslintrc.json"],
+  "rules": {
+    "quotes": [2, "single"],
+    "strict": 0,
+    "curly": 0,
+    "no-empty": 0,
+    "no-multi-spaces": 2,
+    "no-underscore-dangle": 0,
+    "new-cap": 0,
+    "dot-notation": 0,
+    "no-use-before-define": 0,
+    "keyword-spacing": [2, { "after": true, "before": true }],
+    "no-trailing-spaces": 2,
+    "space-unary-ops": [1, { "words": true, "nonwords": false }],
+    "no-console": "off",
+    "@typescript-eslint/triple-slash-reference": 0,
+    "@typescript-eslint/no-explicit-any": 0
+  }
+}
