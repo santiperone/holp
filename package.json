@@ -3,8 +3,8 @@
   "version": "1.0.1",
   "description": "HOF approach for AWS Lambda proxy integrations",
   "main": "./dist/proxies.cjs",
-  "types": "./dist/index.d.ts",
   "module": "./dist/proxies.js",
+  "types": "./proxies.d.ts",
   "exports": {
     "./proxies": {
       "import": "./dist/proxies.js",
@@ -19,14 +19,15 @@
   },
   "files": [
     "dist/*",
-    "index.d.ts",
     "proxies.d.ts",
+    "proxies.d.mts",
     "errors.d.ts"
   ],
   "directories": {
     "test": "test"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.3.0",
     "@total-typescript/shoehorn": "^0.1.1",
     "@types/aws-lambda": "^8.10.110",
     "@types/jest": "^29.4.0",
@@ -50,7 +51,7 @@
     "test": "jest --silent --coverage"
   },
   "author": "Santiago Perone",
-  "license": "ISC",
+  "license": "MIT",
   "engines": {
     "node": ">=16.0.0"
   }
