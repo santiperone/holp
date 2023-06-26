@@ -45,7 +45,7 @@ In a proyect with several lambda functions, we can easily imagine how this patte
 
 ```typescript
 import { APIGatewayEvent } from "aws-lambda";
-import { withApiGateway, ApiGatewayParsedEvent } from "holp/proxies";
+import { withApiGateway, ApiGatewayParsedEvent } from "holp";
 import { BadRequestError } from "holp/errors";
 import logger from 'my-logging-library';
 
@@ -80,7 +80,7 @@ As we can see, our Handler is much cleaner, and we avoid repeating the same logi
 The library exports some common HTTP Errors as classes that extend the native javascript Error class. This gives us much cleaner code and allows us to keep the stack trace of the errors thrown by our application.
 
 ```typescript
-import { withAPIGateway, APIGatewayParsedEvent } from 'holp/proxies';
+import { withAPIGateway, APIGatewayParsedEvent } from 'holp';
 import {
   BadGatewayError,
   BadRequestError,
@@ -113,7 +113,7 @@ export const Handler = withAPIGateway(myLambda);
 Furthermore, we can create our own errors by extending the HTTPError class. This allows us to define our own error catalog for our application, and have more insight into what is happening with our application. For example, if we had to validate a transaction, we could do the following:
 
 ```typescript
-import { ApiGateWayResponseProxy, APIGatewayParsedEvent } from 'holp/proxies';
+import { ApiGateWayResponseProxy, APIGatewayParsedEvent } from 'holp';
 import { BadRequestError } from 'holp/errors';
 
 class InvalidTransactionError extends BadRequestError {

@@ -9,7 +9,7 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: {
-        proxies: './src/proxies/index.ts',
+        index: './src/index.ts',
         errors: './src/errors/index.ts',
       },
       formats: ['es', 'cjs'],

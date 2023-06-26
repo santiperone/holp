@@ -2,14 +2,14 @@
   "name": "holp",
   "version": "1.0.2",
   "description": "HOF approach for AWS Lambda proxy integrations",
-  "main": "./dist/proxies.cjs",
-  "module": "./dist/proxies.js",
-  "types": "./proxies.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "./proxies": {
-      "import": "./dist/proxies.js",
-      "require": "./dist/proxies.cjs",
-      "types": "./dist/proxies/index.d.ts"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
     },
     "./errors": {
       "import": "./dist/errors.js",
@@ -19,9 +19,8 @@
   },
   "files": [
     "dist/*",
-    "proxies.d.ts",
-    "proxies.d.mts",
-    "errors.d.ts"
+    "*.d.ts",
+    "*.d.mts"
   ],
   "directories": {
     "test": "test"
