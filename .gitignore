@@ -66,18 +66,4 @@ typings/
 # dotenv environment variables file
 .env
 
-# next.js build output
-.next
-
-#plato reports
-reports/
-report/
-
-#retire reports
-retire-report.txt
-
-#helm-chart build
-charts-output/
-package-lock.json
-
 .idea/
