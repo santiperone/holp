@@ -2,7 +2,7 @@ import {
   BadRequestError,
 } from '../src/errors/http';
 import { responseFactory, errorFactory } from '../src/utils/APIGatewayResponse';
-import { withAPIGateway } from '../src/proxies';
+import { withAPIGateway } from '../src';
 import { fromPartial } from '@total-typescript/shoehorn';
 
 const mockLogger = {
