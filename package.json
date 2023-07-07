@@ -2,6 +2,10 @@
   "name": "holp",
   "version": "1.0.2",
   "description": "HOF approach for AWS Lambda proxy integrations",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santiperone/holp"
+  },
   "main": "./dist-cjs/index.js",
   "module": "./dist-esm/index.js",
   "types": "./dist-cjs/index.d.ts",
@@ -44,6 +48,7 @@
     "build:esm": "npx tsc -p tsconfig.esm.json",
     "build": "npm run build:cjs && npm run build:esm",
     "lint": "eslint ./src/**/*.ts -c .eslintrc.json",
+    "attw": "attw holp-1.0.2.tgz",
     "test": "jest --silent --coverage"
   },
   "author": "Santiago Perone",
