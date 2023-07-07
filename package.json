@@ -48,7 +48,7 @@
     "build:esm": "npx tsc -p tsconfig.esm.json",
     "build": "npm run build:cjs && npm run build:esm",
     "lint": "eslint ./src/**/*.ts -c .eslintrc.json",
-    "attw": "attw holp-1.0.2.tgz",
+    "attw": "attw holp-$npm_package_version.tgz",
     "test": "jest --silent --coverage"
   },
   "author": "Santiago Perone",
