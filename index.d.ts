@@ -1,2 +1,2 @@
-export * from './dist-cjs';
+export * from './dist';
 /// <reference path="./errors.d.ts" />

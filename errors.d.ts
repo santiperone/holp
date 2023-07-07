@@ -1,1 +1,1 @@
-export * from './dist-cjs/errors';
+export * from './dist/errors';
