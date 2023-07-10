@@ -1,6 +1,6 @@
 {
   "name": "holp",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "HOF approach for AWS Lambda proxy integrations",
   "repository": {
     "type": "git",
