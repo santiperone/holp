@@ -69,7 +69,7 @@ export function errorFactory(
   const responseError =
     error instanceof HTTPError
       ? error
-      : new InternalServerError('Hubo un error no identificado', {
+      : new InternalServerError('Unidentified server error', {
           cause: error,
         });
   const { message, code, statusCode } = responseError;
