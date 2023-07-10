@@ -49,7 +49,7 @@
   },
   "scripts": {
     "build": "tsup",
-    "lint": "eslint ./src/**/*.ts -c .eslintrc.json",
+    "lint": "eslint ./src/**/*.ts",
     "attw": "attw --pack",
     "test": "jest --silent --coverage",
     "pre-commit": "lint-staged",
