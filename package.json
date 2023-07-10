@@ -38,7 +38,10 @@
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-jest": "^26.5.3",
+    "husky": "^8.0.3",
     "jest": "^29.4.3",
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.0",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
     "tsup": "^7.1.0",
@@ -48,7 +51,15 @@
     "build": "tsup",
     "lint": "eslint ./src/**/*.ts -c .eslintrc.json",
     "attw": "attw --pack",
-    "test": "jest --silent --coverage"
+    "test": "jest --silent --coverage",
+    "pre-commit": "lint-staged",
+    "pre-push": "npm run test"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "prettier --write",
+      "eslint --max-warnings=0 --fix"
+    ]
   },
   "author": "Santiago Perone",
   "license": "MIT",
