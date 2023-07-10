@@ -1,6 +1,4 @@
-import {
-  BadRequestError,
-} from '../src/errors/http';
+import { BadRequestError } from '../src/errors/http';
 import { responseFactory, errorFactory } from '../src/utils/APIGatewayResponse';
 import { withAPIGateway } from '../src';
 import { fromPartial } from '@total-typescript/shoehorn';
@@ -13,7 +11,6 @@ const mockLogger = {
 };
 
 describe('responseFactory', () => {
-
   it('should create a 204 response for empty body', () => {
     const content = { body: {} };
     const response = responseFactory(content);
@@ -78,7 +75,9 @@ describe('withAPIGateway', () => {
     const proxy = withAPIGateway(handler);
     await proxy(fromPartial({ headers: rawHeaders }), fromPartial({}));
     expect(handler.mock.calls[0][0].rawHeaders).toEqual(rawHeaders);
-    expect(handler.mock.calls[0][0].headers.authorization).toEqual(rawHeaders.Authorization);
+    expect(handler.mock.calls[0][0].headers.authorization).toEqual(
+      rawHeaders.Authorization,
+    );
   });
 
   it('should return an error response', async () => {
@@ -90,7 +89,7 @@ describe('withAPIGateway', () => {
     expect(response.statusCode).toBe(500);
     expect(response.body).toBeDefined();
     const body = JSON.parse(response.body);
-    expect(body.error.message).toBe('Hubo un error no identificado');
+    expect(body.error.message).toBe('Unidentified server error');
   });
 
   it('should generate success logs', async () => {
