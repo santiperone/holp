@@ -6,12 +6,13 @@ import {
   Context,
 } from 'aws-lambda';
 import {HolpHeaders, parseEvent} from '../utils/APIGatewayRequest';
+import {Handler} from '../@types/handler';
 import {
-  Logger,
   APIGatewayResponse,
   responseFactory,
   errorFactory,
 } from '../utils/APIGatewayResponse';
+import {Logger} from '../@types/logger';
 
 export interface APIGatewayParsedEvent
   extends Omit<APIGatewayProxyEvent, 'body' | 'headers'> {
@@ -21,11 +22,6 @@ export interface APIGatewayParsedEvent
   pathParameters: APIGatewayProxyEventPathParameters;
   rawHeaders: APIGatewayProxyEventHeaders;
 }
-
-type Handler<TEvent> = (
-  event: TEvent,
-  context: Context,
-) => Promise<APIGatewayResponse>;
 
 interface CorsSettings {
   origin?: string;
@@ -55,7 +51,7 @@ const defaultLogger: Logger = {
  * @returns A lambda handler function
  */
 export function withAPIGateway<TEvent extends APIGatewayParsedEvent>(
-  handler: Handler<TEvent>,
+  handler: Handler<TEvent, APIGatewayResponse>,
   options: withAPIGatewayOptions = {logger: defaultLogger},
 ) {
   return async function (event: APIGatewayProxyEvent, context: Context) {

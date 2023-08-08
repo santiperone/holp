@@ -13,13 +13,6 @@ function isEmpty(value: Body) {
   );
 }
 
-export interface Logger {
-  trace?: (...content: any) => void;
-  debug: (...content: any) => void;
-  info: (...content: any) => void;
-  warn: (...content: any) => void;
-  error: (...content: any) => void;
-}
 export interface APIGatewayResponse {
   body?: Body;
   headers?: APIGatewayProxyResult['headers'];
@@ -90,7 +83,7 @@ export function errorFactory(
           cause: error,
         });
   const {message, code, statusCode} = responseError;
-  const body = {error: {message, code}};
+  const body = {message, code};
 
   return responseFactory({body, statusCode}, {logger});
 }
