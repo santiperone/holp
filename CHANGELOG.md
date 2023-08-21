@@ -1,3 +1,7 @@
+## [1.0.5] - 2023-07-06
+- Changed homepage and added docs.
+- Fixed Readme.
+
 ## [1.0.4] - 2023-07-06
 - Fixed issue where errors where not being instanced correctly.
 - Changed default error message.
