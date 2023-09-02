@@ -1,4 +1,14 @@
-## [1.0.5] - 2023-07-06
+## [1.1.0] - 2023-09-01
+- Changed homepage and added docs.
+- Fixed Readme.
+- Added console.log as default logger.
+- Added UnsupportedMediaType error.
+- Changes Headers parsing implementation to provide a cleaner API.
+- Added check to only parse Body when Content-Type is application/json.
+- Improved support for CORS settings.
+- Added ability to send custom headers in the response.
+
+## [1.0.5] - 2023-08-21
 - Changed homepage and added docs.
 - Fixed Readme.
 

@@ -1,7 +1,7 @@
 // TODO: find a more suitable logging library.
-import { APIGatewayProxyResult } from 'aws-lambda';
-import { HTTPError, InternalServerError } from '../errors';
-import { withAPIGatewayOptions } from '../proxies';
+import {APIGatewayProxyResult} from 'aws-lambda';
+import {HTTPError, InternalServerError} from '../errors';
+import {withAPIGatewayOptions} from '../proxies';
 
 type Body = object | undefined | null;
 
@@ -22,7 +22,9 @@ export interface Logger {
 }
 export interface APIGatewayResponse {
   body?: Body;
+  headers?: APIGatewayProxyResult['headers'];
   statusCode?: number;
+  isBase64Encoded?: boolean;
 }
 
 /**
@@ -30,31 +32,46 @@ export interface APIGatewayResponse {
  */
 export function responseFactory(
   res: APIGatewayResponse,
-  options: withAPIGatewayOptions = {}
+  options: withAPIGatewayOptions = {},
 ): APIGatewayProxyResult {
   const logger = options.logger;
   const body = res.body !== undefined ? res.body : res;
   const statusCode = res.statusCode;
+  const headers: Record<string, string | number | boolean> = {
+    'Content-Type': 'application/json',
+    ...res.headers,
+  };
+  if (options.cors?.origin || process.env.CORS_ORIGIN) {
+    headers['Access-Control-Allow-Origin'] =
+      options.cors?.origin || (process.env.CORS_ORIGIN as string); // This won't be undefined because of the if statement above.
+  }
+  if (options.cors) {
+    if (options.cors?.allowCredentials) {
+      headers['Access-Control-Allow-Credentials'] =
+        options.cors.allowCredentials;
+    }
+  }
+
   const response = {
     statusCode: statusCode ? statusCode : isEmpty(body) ? 204 : 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
-    },
+    headers,
     body,
-    isBase64Encoded: false,
+    isBase64Encoded: res.isBase64Encoded,
   };
 
   if (Number(response.statusCode) < 400) {
     logger?.info({
       msg: '[RESPONSE]',
-      response: { ...response, body: '****' },
+      response: {...response, body: '****'},
     });
   } else {
-    logger?.error({ msg: '[RESPONSE_ERROR]', response });
+    logger?.error({msg: '[RESPONSE_ERROR]', response});
   }
 
-  return { ...response, body: JSON.stringify(body) };
+  return {
+    ...response,
+    body: typeof body === 'string' ? body : JSON.stringify(body),
+  };
 }
 
 /**
@@ -62,7 +79,7 @@ export function responseFactory(
  */
 export function errorFactory(
   error: unknown,
-  options: withAPIGatewayOptions = {}
+  options: withAPIGatewayOptions = {},
 ): APIGatewayProxyResult {
   const logger = options.logger;
   logger?.error(error as Error);
@@ -72,8 +89,8 @@ export function errorFactory(
       : new InternalServerError('Unidentified server error', {
           cause: error,
         });
-  const { message, code, statusCode } = responseError;
-  const body = { error: { message, code } };
+  const {message, code, statusCode} = responseError;
+  const body = {error: {message, code}};
 
-  return responseFactory({ body, statusCode }, { logger });
+  return responseFactory({body, statusCode}, {logger});
 }
