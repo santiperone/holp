@@ -63,6 +63,16 @@ export class ConflictError extends HTTPError {
   }
 }
 
+export class UnsupportedMediaTypeError extends HTTPError {
+  constructor(message: string, options?: CustomHttpErrorOptions) {
+    super(message, {
+      code: 'UNSUPPORTED_MEDIA_TYPE',
+      ...options,
+      statusCode: 415,
+    });
+  }
+}
+
 export class InternalServerError extends HTTPError {
   constructor(message: string, options?: CustomHttpErrorOptions) {
     super(message, { code: 'INTERNAL_SERVER_ERROR', ...options, statusCode: 500 });
